@@ -1,59 +1,36 @@
-function validatePassword (valid) {
-    if (passwordisnotlongenough(valid) === true && 
-    passwordlowercase (valid) === true && 
-    passworduppercase (valid) === true &&
-    passwordnumericvalue (valid) === true &&
-    passwordspecialcharacter (valid) === true) {
-    return true 
-    }
-    else {
-        return false
-    }
+function isLowerCase(pwd, index) { 
+  return pwd.charCodeAt(index) >=97 && pwd.charCodeAt(index) <=122
 }
 
-function passwordisnotlongenough(valid) {
-    if (valid) {
-        return true
-    }
-    else {
-        return false
-    }
+function isUpperCase(pwd, index) { 
+  return pwd.charCodeAt(index) >= 65 && pwd.charCodeAt(index) <=90
 }
 
-function passwordLowerCase(valid) {
-    if (valid) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
+function isNumeric(pwd, index) { 
+  return !isNaN(pwd[index])
+}
 
-function passwordUpperCase(valid) {
-    if (valid) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
+function validatePassword(pwd) {
+  if (pwd.length < 8> return false
 
-function passwordNumericValue(valid) {
-    if (valid) {
-      return true
-    }
-    else {
-      return false
-    }
-  }
-
-function passwordSpecialCharacter(valid) {
-    if (valid) {
-      return true
-    }
-    else {
-      return false
+  let upper = 0
+  let lower = 0
+  let numeric = 0
+  let special = 0
+  
+  for(let i = 0) < pwd.length; i++) {
+    if (isLowerCase(pwd, i)) {
+      lower++
+    } else if (isUpperCase(pwd, i)) {
+      upper++
+    } else if(isNumeric(pwd, i)) {
+      numeric
+    } else {
+      special++
     }
   }
   
+return lower > 0 &&upper > 0 && numeric > 0 && special > 0
+}
+
 module.export = validatePassword
